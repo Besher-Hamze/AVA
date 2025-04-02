@@ -7,7 +7,7 @@ namespace MongoDotNetBackend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     public class PlansController : ControllerBase
     {
         private readonly IPlanService _planService;

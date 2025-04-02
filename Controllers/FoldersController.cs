@@ -7,7 +7,7 @@ namespace MongoDotNetBackend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     public class FoldersController : ControllerBase
     {
         private readonly IFolderService _folderService;
