@@ -6,7 +6,7 @@ namespace MongoDotNetBackend.DTOs
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string ParentId { get; set; }
+        public string? ParentId { get; set; }
         public string Path { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
@@ -18,13 +18,13 @@ namespace MongoDotNetBackend.DTOs
     {
         [Required(ErrorMessage = "Folder name is required")]
         public string Name { get; set; }
-        public string ParentId { get; set; }
+        public string? ParentId { get; set; }
     }
 
     public class UpdateFolderDto
     {
         public string Name { get; set; }
-        public string ParentId { get; set; }
+        public string? ParentId { get; set; }
     }
 }
 

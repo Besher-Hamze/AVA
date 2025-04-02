@@ -16,7 +16,7 @@ namespace MongoDotNetBackend.Models
 
         [BsonElement("parentId")]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string ParentId { get; set; }
+        public string? ParentId { get; set; }
 
         [BsonElement("path")]
         public string Path { get; set; }
