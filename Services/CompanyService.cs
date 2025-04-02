@@ -8,6 +8,8 @@ namespace MongoDotNetBackend.Services
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
+        private readonly IWorkCategoryRepository _workCategortRepository;
+        private readonly IWorkTypeRepository _workTypeRepository;
         private readonly IMapper _mapper;
 
         public CompanyService(ICompanyRepository companyRepository, IMapper mapper)

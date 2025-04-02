@@ -31,7 +31,7 @@ namespace MongoDotNetBackend.Services
                 Directory.CreateDirectory(_uploadsFolder);
             }
             
-            _baseUrl = "http://localhost:5135/api/files";
+            _baseUrl = "http://5.189.185.195:8080/uploads";
         }
 
         public async Task<IEnumerable<FileStorageDto>> GetAllFilesAsync()
