@@ -11,7 +11,7 @@ namespace MongoDotNetBackend.DTOs
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
         public List<FolderDto> SubFolders { get; set; } = new List<FolderDto>();
-        public List<PlanDto> Plans { get; set; } = new List<PlanDto>();
+        public List<SchemeDto> schemes { get; set; } = new List<SchemeDto>();
     }
 
     public class CreateFolderDto

@@ -8,16 +8,16 @@ namespace MongoDotNetBackend.Services
     public class FolderService : IFolderService
     {
         private readonly IFolderRepository _folderRepository;
-        private readonly IPlanRepository _planRepository;
+        private readonly ISchemeRepository _schemeRepository;
         private readonly IMapper _mapper;
 
         public FolderService(
             IFolderRepository folderRepository,
-            IPlanRepository planRepository,
+            ISchemeRepository schemeRepository,
             IMapper mapper)
         {
             _folderRepository = folderRepository ?? throw new ArgumentNullException(nameof(folderRepository));
-            _planRepository = planRepository ?? throw new ArgumentNullException(nameof(planRepository));
+            _schemeRepository = schemeRepository ?? throw new ArgumentNullException(nameof(schemeRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -42,8 +42,8 @@ namespace MongoDotNetBackend.Services
                 var subFolders = await _folderRepository.GetSubFoldersAsync(id);
                 folderDto.SubFolders = _mapper.Map<List<FolderDto>>(subFolders);
 
-                var plans = await _planRepository.GetPlansByFolderIdAsync(id);
-                folderDto.Plans = _mapper.Map<List<PlanDto>>(plans);
+                var schemes = await _schemeRepository.GetSchemesByFolderIdAsync(id);
+                folderDto.schemes = _mapper.Map<List<SchemeDto>>(schemes);
             }
 
             return folderDto;
@@ -135,10 +135,10 @@ namespace MongoDotNetBackend.Services
                 await DeleteFolderAsync(subFolder.Id);
             }
 
-            var plans = await _planRepository.GetPlansByFolderIdAsync(id);
-            foreach (var plan in plans)
+            var Schemes = await _schemeRepository.GetSchemesByFolderIdAsync(id);
+            foreach (var Scheme in Schemes)
             {
-                await _planRepository.DeleteAsync(plan.Id);
+                await _schemeRepository.DeleteAsync(Scheme.Id);
             }
 
             await _folderRepository.DeleteAsync(id);

@@ -34,7 +34,7 @@ builder.Services.AddScoped<IContributedCompanyRepository, ContributedCompanyRepo
 builder.Services.AddScoped<IFileStorageRepository, FileStorageRepository>();
 builder.Services.AddScoped<ILetterTemplateRepository, LetterTemplateRepository>();
 builder.Services.AddScoped<IFolderRepository, FolderRepository>();
-builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+builder.Services.AddScoped<ISchemeRepository, SchemeRepository>();
 
 
 // Register Services
@@ -49,7 +49,7 @@ builder.Services.AddScoped<IContributedCompanyService, ContributedCompanyService
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<ILetterTemplateService, LetterTemplateService>();
 builder.Services.AddScoped<IFolderService, FolderService>();
-builder.Services.AddScoped<IPlanService, PlanService>();
+builder.Services.AddScoped<ISchemeService, SchemeService>();
 
 
 // Configure JWT Authentication

@@ -57,9 +57,9 @@ namespace MongoDotNetBackend.Services
             CreateMap<UpdateFolderDto, Folder>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-            CreateMap<Plan, PlanDto>();
-            CreateMap<CreatePlanDto, Plan>();
-            CreateMap<UpdatePlanDto, Plan>()
+            CreateMap<Scheme, SchemeDto>();
+            CreateMap<CreateSchemeDto, Scheme>();
+            CreateMap<UpdateSchemeDto, Scheme>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         }

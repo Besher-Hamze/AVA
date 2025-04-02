@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MongoDotNetBackend.DTOs
 {
-    public class PlanDto
+    public class SchemeDto
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -14,9 +14,9 @@ namespace MongoDotNetBackend.DTOs
         public DateTime LastModifiedDate { get; set; }
     }
 
-    public class CreatePlanDto
+    public class CreateSchemeDto
     {
-        [Required(ErrorMessage = "Plan name is required")]
+        [Required(ErrorMessage = "Scheme name is required")]
         public string Name { get; set; }
         
         [Required(ErrorMessage = "Folder ID is required")]
@@ -27,7 +27,7 @@ namespace MongoDotNetBackend.DTOs
         public string Type { get; set; }
     }
 
-    public class UpdatePlanDto
+    public class UpdateSchemeDto
     {
         public string Name { get; set; }
         public string FolderId { get; set; }

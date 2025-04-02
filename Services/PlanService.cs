@@ -5,14 +5,14 @@ using MongoDotNetBackend.Repositories;
 
 namespace MongoDotNetBackend.Services
 {
-    public class PlanService : IPlanService
+    public class SchemeService : ISchemeService
     {
-        private readonly IPlanRepository _planRepository;
+        private readonly ISchemeRepository _planRepository;
         private readonly IFolderRepository _folderRepository;
         private readonly IMapper _mapper;
 
-        public PlanService(
-            IPlanRepository planRepository,
+        public SchemeService(
+            ISchemeRepository planRepository,
             IFolderRepository folderRepository,
             IMapper mapper)
         {
@@ -21,13 +21,13 @@ namespace MongoDotNetBackend.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IEnumerable<PlanDto>> GetAllPlansAsync()
+        public async Task<IEnumerable<SchemeDto>> GetAllPlansAsync()
         {
             var plans = await _planRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<PlanDto>>(plans);
+            return _mapper.Map<IEnumerable<SchemeDto>>(plans);
         }
 
-        public async Task<PlanDto> GetPlanByIdAsync(string id)
+        public async Task<SchemeDto> GetPlanByIdAsync(string id)
         {
             var plan = await _planRepository.GetByIdAsync(id);
             if (plan == null)
@@ -35,10 +35,10 @@ namespace MongoDotNetBackend.Services
                 throw new KeyNotFoundException($"Plan with ID {id} not found.");
             }
             
-            return _mapper.Map<PlanDto>(plan);
+            return _mapper.Map<SchemeDto>(plan);
         }
 
-        public async Task<IEnumerable<PlanDto>> GetPlansByFolderIdAsync(string folderId)
+        public async Task<IEnumerable<SchemeDto>> GetPlansByFolderIdAsync(string folderId)
         {
             var folder = await _folderRepository.GetByIdAsync(folderId);
             if (folder == null)
@@ -46,34 +46,34 @@ namespace MongoDotNetBackend.Services
                 throw new KeyNotFoundException($"Folder with ID {folderId} not found.");
             }
 
-            var plans = await _planRepository.GetPlansByFolderIdAsync(folderId);
-            return _mapper.Map<IEnumerable<PlanDto>>(plans);
+            var plans = await _planRepository.GetSchemesByFolderIdAsync(folderId);
+            return _mapper.Map<IEnumerable<SchemeDto>>(plans);
         }
 
-        public async Task<IEnumerable<PlanDto>> GetPlansByTypeAsync(string type)
+        public async Task<IEnumerable<SchemeDto>> GetPlansByTypeAsync(string type)
         {
-            var plans = await _planRepository.GetPlansByTypeAsync(type);
-            return _mapper.Map<IEnumerable<PlanDto>>(plans);
+            var plans = await _planRepository.GetSchemesByTypeAsync(type);
+            return _mapper.Map<IEnumerable<SchemeDto>>(plans);
         }
 
-        public async Task<PlanDto> CreatePlanAsync(CreatePlanDto createPlanDto)
+        public async Task<SchemeDto> CreatePlanAsync(CreateSchemeDto createSchemeDto)
         {
             // Validate folder
-            var folder = await _folderRepository.GetByIdAsync(createPlanDto.FolderId);
+            var folder = await _folderRepository.GetByIdAsync(createSchemeDto.FolderId);
             if (folder == null)
             {
-                throw new KeyNotFoundException($"Folder with ID {createPlanDto.FolderId} not found.");
+                throw new KeyNotFoundException($"Folder with ID {createSchemeDto.FolderId} not found.");
             }
 
-            var planEntity = _mapper.Map<Plan>(createPlanDto);
+            var planEntity = _mapper.Map<Scheme>(createSchemeDto);
             planEntity.CreatedDate = DateTime.UtcNow;
             planEntity.LastModifiedDate = DateTime.UtcNow;
             
             await _planRepository.CreateAsync(planEntity);
-            return _mapper.Map<PlanDto>(planEntity);
+            return _mapper.Map<SchemeDto>(planEntity);
         }
 
-        public async Task UpdatePlanAsync(string id, UpdatePlanDto updatePlanDto)
+        public async Task UpdatePlanAsync(string id, UpdateSchemeDto updateSchemeDto)
         {
             var planEntity = await _planRepository.GetByIdAsync(id);
             if (planEntity == null)
@@ -81,16 +81,16 @@ namespace MongoDotNetBackend.Services
                 throw new KeyNotFoundException($"Plan with ID {id} not found.");
             }
 
-            if (!string.IsNullOrEmpty(updatePlanDto.FolderId) && updatePlanDto.FolderId != planEntity.FolderId)
+            if (!string.IsNullOrEmpty(updateSchemeDto.FolderId) && updateSchemeDto.FolderId != planEntity.FolderId)
             {
-                var folder = await _folderRepository.GetByIdAsync(updatePlanDto.FolderId);
+                var folder = await _folderRepository.GetByIdAsync(updateSchemeDto.FolderId);
                 if (folder == null)
                 {
-                    throw new KeyNotFoundException($"Folder with ID {updatePlanDto.FolderId} not found.");
+                    throw new KeyNotFoundException($"Folder with ID {updateSchemeDto.FolderId} not found.");
                 }
             }
 
-            _mapper.Map(updatePlanDto, planEntity);
+            _mapper.Map(updateSchemeDto, planEntity);
             planEntity.LastModifiedDate = DateTime.UtcNow;
             
             await _planRepository.UpdateAsync(id, planEntity);
@@ -108,14 +108,14 @@ namespace MongoDotNetBackend.Services
         }
     }
 
-    public interface IPlanService
+    public interface ISchemeService
     {
-        Task<IEnumerable<PlanDto>> GetAllPlansAsync();
-        Task<PlanDto> GetPlanByIdAsync(string id);
-        Task<IEnumerable<PlanDto>> GetPlansByFolderIdAsync(string folderId);
-        Task<IEnumerable<PlanDto>> GetPlansByTypeAsync(string type);
-        Task<PlanDto> CreatePlanAsync(CreatePlanDto createPlanDto);
-        Task UpdatePlanAsync(string id, UpdatePlanDto updatePlanDto);
+        Task<IEnumerable<SchemeDto>> GetAllPlansAsync();
+        Task<SchemeDto> GetPlanByIdAsync(string id);
+        Task<IEnumerable<SchemeDto>> GetPlansByFolderIdAsync(string folderId);
+        Task<IEnumerable<SchemeDto>> GetPlansByTypeAsync(string type);
+        Task<SchemeDto> CreatePlanAsync(CreateSchemeDto createSchemeDto);
+        Task UpdatePlanAsync(string id, UpdateSchemeDto updateSchemeDto);
         Task DeletePlanAsync(string id);
     }
 }

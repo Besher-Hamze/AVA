@@ -10,22 +10,22 @@ namespace MongoDotNetBackend.Controllers
     // [Authorize]
     public class PlansController : ControllerBase
     {
-        private readonly IPlanService _planService;
+        private readonly ISchemeService _planService;
 
-        public PlansController(IPlanService planService)
+        public PlansController(ISchemeService planService)
         {
             _planService = planService ?? throw new ArgumentNullException(nameof(planService));
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlanDto>>> GetPlans()
+        public async Task<ActionResult<IEnumerable<SchemeDto>>> GetPlans()
         {
             var plans = await _planService.GetAllPlansAsync();
             return Ok(plans);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PlanDto>> GetPlan(string id)
+        public async Task<ActionResult<SchemeDto>> GetPlan(string id)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace MongoDotNetBackend.Controllers
         }
 
         [HttpGet("folder/{folderId}")]
-        public async Task<ActionResult<IEnumerable<PlanDto>>> GetPlansByFolder(string folderId)
+        public async Task<ActionResult<IEnumerable<SchemeDto>>> GetPlansByFolder(string folderId)
         {
             try
             {
@@ -53,14 +53,14 @@ namespace MongoDotNetBackend.Controllers
         }
 
         [HttpGet("type/{type}")]
-        public async Task<ActionResult<IEnumerable<PlanDto>>> GetPlansByType(string type)
+        public async Task<ActionResult<IEnumerable<SchemeDto>>> GetPlansByType(string type)
         {
             var plans = await _planService.GetPlansByTypeAsync(type);
             return Ok(plans);
         }
 
         [HttpPost]
-        public async Task<ActionResult<PlanDto>> CreatePlan([FromBody] CreatePlanDto createPlanDto)
+        public async Task<ActionResult<SchemeDto>> CreatePlan([FromBody] CreateSchemeDto createSchemeDto)
         {
             if (!ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace MongoDotNetBackend.Controllers
 
             try
             {
-                var createdPlan = await _planService.CreatePlanAsync(createPlanDto);
+                var createdPlan = await _planService.CreatePlanAsync(createSchemeDto);
                 return CreatedAtAction(nameof(GetPlan), new { id = createdPlan.Id }, createdPlan);
             }
             catch (KeyNotFoundException ex)
@@ -83,7 +83,7 @@ namespace MongoDotNetBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePlan(string id, [FromBody] UpdatePlanDto updatePlanDto)
+        public async Task<IActionResult> UpdatePlan(string id, [FromBody] UpdateSchemeDto updateSchemeDto)
         {
             if (!ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace MongoDotNetBackend.Controllers
 
             try
             {
-                await _planService.UpdatePlanAsync(id, updatePlanDto);
+                await _planService.UpdatePlanAsync(id, updateSchemeDto);
                 return NoContent();
             }
             catch (KeyNotFoundException)

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MongoDotNetBackend.Models
 {
-    public class Plan
+    public class Scheme
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
