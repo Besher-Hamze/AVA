@@ -11,7 +11,7 @@ namespace MongoDotNetBackend.DTOs
         public string Introduction { get; set; }
         public string Body { get; set; }
         public string Conclusion { get; set; }
-        public string Signature { get; set; }
+        public string Farewell { get; set; }
         public string ThumbnailImage { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
@@ -27,7 +27,7 @@ namespace MongoDotNetBackend.DTOs
         public string Introduction { get; set; }
         public string Body { get; set; }
         public string Conclusion { get; set; }
-        public string Signature { get; set; }
+        public string Farewell { get; set; }
         public string ThumbnailImage { get; set; }
     }
 
@@ -39,7 +39,7 @@ namespace MongoDotNetBackend.DTOs
         public string Introduction { get; set; }
         public string Body { get; set; }
         public string Conclusion { get; set; }
-        public string Signature { get; set; }
+        public string Farewell { get; set; }
         public string ThumbnailImage { get; set; }
     }
 }

@@ -29,8 +29,8 @@ namespace MongoDotNetBackend.Models
         [BsonElement("conclusion")]
         public string Conclusion { get; set; }
 
-        [BsonElement("signature")]
-        public string Signature { get; set; }
+        [BsonElement("farewell")]
+        public string Farewell { get; set; }
 
         [BsonElement("thumbnail_image")]
         public string ThumbnailImage { get; set; }
