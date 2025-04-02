@@ -46,6 +46,11 @@ namespace MongoDotNetBackend.Services
             // File Storage mappings 
             CreateMap<FileStorage, FileStorageDto>().ReverseMap();
 
+            // Letter Template mappings
+            CreateMap<LetterTemplate, LetterTemplateDto>();
+            CreateMap<CreateLetterTemplateDto, LetterTemplate>();
+            CreateMap<UpdateLetterTemplateDto, LetterTemplate>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }
