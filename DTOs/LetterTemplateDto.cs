@@ -12,8 +12,7 @@ namespace MongoDotNetBackend.DTOs
         public string Body { get; set; }
         public string Conclusion { get; set; }
         public string Signature { get; set; }
-        public bool Miniaturized { get; set; }
-        public List<string> Sections { get; set; } = new List<string>();
+        public string ThumbnailImage { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }
@@ -29,8 +28,7 @@ namespace MongoDotNetBackend.DTOs
         public string Body { get; set; }
         public string Conclusion { get; set; }
         public string Signature { get; set; }
-        public bool Miniaturized { get; set; }
-        public List<string> Sections { get; set; } = new List<string>();
+        public string ThumbnailImage { get; set; }
     }
 
     public class UpdateLetterTemplateDto
@@ -42,8 +40,7 @@ namespace MongoDotNetBackend.DTOs
         public string Body { get; set; }
         public string Conclusion { get; set; }
         public string Signature { get; set; }
-        public bool Miniaturized { get; set; }
-        public List<string> Sections { get; set; } = new List<string>();
+        public string ThumbnailImage { get; set; }
     }
 }
 

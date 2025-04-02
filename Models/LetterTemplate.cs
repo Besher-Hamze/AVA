@@ -32,11 +32,8 @@ namespace MongoDotNetBackend.Models
         [BsonElement("signature")]
         public string Signature { get; set; }
 
-        [BsonElement("miniaturized")]
-        public bool Miniaturized { get; set; }
-
-        [BsonElement("sections")]
-        public List<string> Sections { get; set; } = new List<string>();
+        [BsonElement("thumbnail_image")]
+        public string ThumbnailImage { get; set; }
 
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
