@@ -8,11 +8,11 @@ namespace MongoDotNetBackend.Controllers
     [ApiController]
     [Route("api/[controller]")]
     // [Authorize]
-    public class PlansController : ControllerBase
+    public class SchemesController : ControllerBase
     {
         private readonly ISchemeService _planService;
 
-        public PlansController(ISchemeService planService)
+        public SchemesController(ISchemeService planService)
         {
             _planService = planService ?? throw new ArgumentNullException(nameof(planService));
         }
