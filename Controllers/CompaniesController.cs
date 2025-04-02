@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDotNetBackend.DTOs;
 using MongoDotNetBackend.Services;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MongoDotNetBackend.Controllers
 {

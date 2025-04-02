@@ -33,6 +33,8 @@ builder.Services.AddScoped<IWorkTypeRepository, WorkTypeRepository>();
 builder.Services.AddScoped<IContributedCompanyRepository, ContributedCompanyRepository>();
 builder.Services.AddScoped<IFileStorageRepository, FileStorageRepository>();
 builder.Services.AddScoped<ILetterTemplateRepository, LetterTemplateRepository>();
+builder.Services.AddScoped<IFolderRepository, FolderRepository>();
+builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 
 
 // Register Services
@@ -46,6 +48,9 @@ builder.Services.AddScoped<IWorkTypeService, WorkTypeService>();
 builder.Services.AddScoped<IContributedCompanyService, ContributedCompanyService>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<ILetterTemplateService, LetterTemplateService>();
+builder.Services.AddScoped<IFolderService, FolderService>();
+builder.Services.AddScoped<IPlanService, PlanService>();
+
 
 // Configure JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

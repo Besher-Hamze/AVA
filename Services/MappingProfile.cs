@@ -51,6 +51,17 @@ namespace MongoDotNetBackend.Services
             CreateMap<CreateLetterTemplateDto, LetterTemplate>();
             CreateMap<UpdateLetterTemplateDto, LetterTemplate>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<Folder, FolderDto>();
+            CreateMap<CreateFolderDto, Folder>();
+            CreateMap<UpdateFolderDto, Folder>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<Plan, PlanDto>();
+            CreateMap<CreatePlanDto, Plan>();
+            CreateMap<UpdatePlanDto, Plan>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
         }
     }
 }
