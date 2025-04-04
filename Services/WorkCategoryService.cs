@@ -50,6 +50,21 @@ namespace MongoDotNetBackend.Services
 
             await _workCategoryRepository.DeleteAsync(id);
         }
+        public async Task<WorkCategoryDto> UpdateWorkCategoryAsync(string id, UpdateWorkCategoryDto updateWorkCategoryDto)
+{
+    var existingWorkCategory = await _workCategoryRepository.GetByIdAsync(id);
+    if (existingWorkCategory == null)
+    {
+        throw new KeyNotFoundException($"Work category with ID {id} not found.");
+    }
+
+    existingWorkCategory.Category = updateWorkCategoryDto.Category;
+
+    await _workCategoryRepository.UpdateAsync(id,existingWorkCategory);
+
+    return _mapper.Map<WorkCategoryDto>(existingWorkCategory);
+}
+
     }
 
     public interface IWorkCategoryService
@@ -57,6 +72,7 @@ namespace MongoDotNetBackend.Services
         Task<IEnumerable<WorkCategoryDto>> GetAllWorkCategoriesAsync();
         Task<WorkCategoryDto> GetWorkCategoryByIdAsync(string id);
         Task<WorkCategoryDto> CreateWorkCategoryAsync(CreateWorkCategoryDto createWorkCategoryDto);
+        Task<WorkCategoryDto> UpdateWorkCategoryAsync(string id, UpdateWorkCategoryDto updateWorkCategoryDto);
         Task DeleteWorkCategoryAsync(string id);
     }
 }

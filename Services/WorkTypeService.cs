@@ -73,6 +73,35 @@ namespace MongoDotNetBackend.Services
 
             await _workTypeRepository.DeleteAsync(id);
         }
+        public async Task<WorkTypeDto> UpdateWorkTypeAsync(string id, UpdateWorkTypeDto updateWorkTypeDto)
+{
+    var existingWorkType = await _workTypeRepository.GetByIdAsync(id);
+    if (existingWorkType == null)
+    {
+        throw new KeyNotFoundException($"Work type with ID {id} not found.");
+    }
+
+    // Verify that the work category exists if it's being changed
+    if (existingWorkType.WorkCategoryId != updateWorkTypeDto.WorkCategoryId)
+    {
+        var workCategory = await _workCategoryRepository.GetByIdAsync(updateWorkTypeDto.WorkCategoryId);
+        if (workCategory == null)
+        {
+            throw new KeyNotFoundException($"Work category with ID {updateWorkTypeDto.WorkCategoryId} not found.");
+        }
+    }
+
+    // Update properties
+    existingWorkType.Type = updateWorkTypeDto.Type;
+    existingWorkType.WorkCategoryId = updateWorkTypeDto.WorkCategoryId;
+
+    // Save changes
+    await _workTypeRepository.UpdateAsync(id,existingWorkType);
+
+    return _mapper.Map<WorkTypeDto>(existingWorkType);
+}
+
+
     }
 
     public interface IWorkTypeService
@@ -81,6 +110,7 @@ namespace MongoDotNetBackend.Services
         Task<WorkTypeDto> GetWorkTypeByIdAsync(string id);
         Task<IEnumerable<WorkTypeDto>> GetWorkTypesByWorkCategoryIdAsync(string workCategoryId);
         Task<WorkTypeDto> CreateWorkTypeAsync(CreateWorkTypeDto createWorkTypeDto);
+        Task<WorkTypeDto> UpdateWorkTypeAsync(string id, UpdateWorkTypeDto updateWorkTypeDto);
         Task DeleteWorkTypeAsync(string id);
     }
 }

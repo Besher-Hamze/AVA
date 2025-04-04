@@ -61,6 +61,12 @@ namespace MongoDotNetBackend.DTOs
         public string Category { get; set; }
     }
 
+public class UpdateWorkCategoryDto
+{
+    [Required(ErrorMessage = "Category is required")]
+    public string Category { get; set; }
+}
+
     public class WorkTypeDto
     {
         public string Id { get; set; }
@@ -82,6 +88,15 @@ namespace MongoDotNetBackend.DTOs
         [Required(ErrorMessage = "Work category ID is required")]
         public string WorkCategoryId { get; set; }
     }
+
+public class UpdateWorkTypeDto
+{
+    [Required(ErrorMessage = "Type is required")]
+    public string Type { get; set; }
+
+    [Required(ErrorMessage = "Work category ID is required")]
+    public string WorkCategoryId { get; set; }
+}
 
     public class ContributedCompanyDto
     {

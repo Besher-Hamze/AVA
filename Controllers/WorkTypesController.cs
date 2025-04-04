@@ -97,5 +97,29 @@ namespace MongoDotNetBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPut("{id}")]
+public async Task<ActionResult<WorkTypeDto>> UpdateWorkType(string id, [FromBody] UpdateWorkTypeDto updateWorkTypeDto)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
     }
+
+    try
+    {
+        var updatedWorkType = await _workTypeService.UpdateWorkTypeAsync(id, updateWorkTypeDto);
+        return Ok(updatedWorkType);
+    }
+    catch (KeyNotFoundException)
+    {
+        return NotFound();
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(ex.Message);
+    }
+}
+
+    }
+    
 }

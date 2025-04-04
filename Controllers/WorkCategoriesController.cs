@@ -79,5 +79,29 @@ namespace MongoDotNetBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("{id}")]
+public async Task<ActionResult<WorkCategoryDto>> UpdateWorkCategory(string id, [FromBody] UpdateWorkCategoryDto updateWorkCategoryDto)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+
+    try
+    {
+        var updatedWorkCategory = await _workCategoryService.UpdateWorkCategoryAsync(id, updateWorkCategoryDto);
+        return Ok(updatedWorkCategory);
+    }
+    catch (KeyNotFoundException)
+    {
+        return NotFound();
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(ex.Message);
+    }
+}
+
     }
 }
