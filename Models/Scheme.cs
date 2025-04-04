@@ -25,9 +25,6 @@ namespace MongoDotNetBackend.Models
         [BsonElement("filePath")]
         public string FilePath { get; set; }
 
-        [BsonElement("type")]
-        public string Type { get; set; }
-
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 

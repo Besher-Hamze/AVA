@@ -9,7 +9,6 @@ namespace MongoDotNetBackend.DTOs
         public string FolderId { get; set; }
         public List<string> RelatedPrograms { get; set; } = new List<string>();
         public string FilePath { get; set; }
-        public string Type { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }
@@ -24,7 +23,6 @@ namespace MongoDotNetBackend.DTOs
         
         public List<string> RelatedPrograms { get; set; } = new List<string>();
         public string FilePath { get; set; }
-        public string Type { get; set; }
     }
 
     public class UpdateSchemeDto
@@ -33,7 +31,6 @@ namespace MongoDotNetBackend.DTOs
         public string FolderId { get; set; }
         public List<string> RelatedPrograms { get; set; }
         public string FilePath { get; set; }
-        public string Type { get; set; }
     }
 }
 

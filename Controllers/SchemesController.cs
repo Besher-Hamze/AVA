@@ -52,12 +52,7 @@ namespace MongoDotNetBackend.Controllers
             }
         }
 
-        [HttpGet("type/{type}")]
-        public async Task<ActionResult<IEnumerable<SchemeDto>>> GetPlansByType(string type)
-        {
-            var plans = await _planService.GetPlansByTypeAsync(type);
-            return Ok(plans);
-        }
+    
 
         [HttpPost]
         public async Task<ActionResult<SchemeDto>> CreatePlan([FromBody] CreateSchemeDto createSchemeDto)

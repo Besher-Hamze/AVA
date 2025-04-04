@@ -17,16 +17,10 @@ namespace MongoDotNetBackend.Repositories
             return await _collection.Find(filter).ToListAsync();
         }
 
-        public async Task<IEnumerable<Scheme>> GetSchemesByTypeAsync(string type)
-        {
-            var filter = Builders<Scheme>.Filter.Eq(p => p.Type, type);
-            return await _collection.Find(filter).ToListAsync();
-        }
     }
     public interface ISchemeRepository : IRepository<Scheme>
     {
         Task<IEnumerable<Scheme>> GetSchemesByFolderIdAsync(string folderId);
-        Task<IEnumerable<Scheme>> GetSchemesByTypeAsync(string type);
     }
 
 }

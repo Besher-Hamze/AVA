@@ -50,12 +50,7 @@ namespace MongoDotNetBackend.Services
             return _mapper.Map<IEnumerable<SchemeDto>>(plans);
         }
 
-        public async Task<IEnumerable<SchemeDto>> GetPlansByTypeAsync(string type)
-        {
-            var plans = await _planRepository.GetSchemesByTypeAsync(type);
-            return _mapper.Map<IEnumerable<SchemeDto>>(plans);
-        }
-
+   
         public async Task<SchemeDto> CreatePlanAsync(CreateSchemeDto createSchemeDto)
         {
             // Validate folder
@@ -113,7 +108,6 @@ namespace MongoDotNetBackend.Services
         Task<IEnumerable<SchemeDto>> GetAllPlansAsync();
         Task<SchemeDto> GetPlanByIdAsync(string id);
         Task<IEnumerable<SchemeDto>> GetPlansByFolderIdAsync(string folderId);
-        Task<IEnumerable<SchemeDto>> GetPlansByTypeAsync(string type);
         Task<SchemeDto> CreatePlanAsync(CreateSchemeDto createSchemeDto);
         Task UpdatePlanAsync(string id, UpdateSchemeDto updateSchemeDto);
         Task DeletePlanAsync(string id);
