@@ -3,9 +3,12 @@ using System.ComponentModel.DataAnnotations;
 namespace MongoDotNetBackend.DTOs
 {
  
-      public class CompanyDto
+    public class CompanyDto
     {
         public string Id { get; set; }
+
+        [Required(ErrorMessage = "Identification number is required")]
+        public string IdentificationNumber { get; set; }
 
         [Required(ErrorMessage = "Thumbnail image is required")]
         public string ThumbnailImage { get; set; }
@@ -31,6 +34,9 @@ namespace MongoDotNetBackend.DTOs
 
     public class CreateCompanyDto
     {
+        [Required(ErrorMessage = "Identification number is required")]
+        public string IdentificationNumber { get; set; }
+
         [Required(ErrorMessage = "Thumbnail image is required")]
         public string ThumbnailImage { get; set; }
 
@@ -53,6 +59,9 @@ namespace MongoDotNetBackend.DTOs
 
     public class UpdateCompanyDto
     {
+        [Required(ErrorMessage = "Identification number is required")]
+        public string IdentificationNumber { get; set; }
+
         [Required(ErrorMessage = "Thumbnail image is required")]
         public string ThumbnailImage { get; set; }
 
@@ -72,5 +81,4 @@ namespace MongoDotNetBackend.DTOs
         
         public string WorkTypeId { get; set; }
     }
-
 }

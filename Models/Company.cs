@@ -12,6 +12,10 @@ namespace MongoDotNetBackend.Models
         public string Id { get; set; }
 
         [Required]
+        [BsonElement("identification_number")]
+        public string IdentificationNumber { get; set; }
+
+        [Required]
         [BsonElement("thumbnail_image")]
         public string ThumbnailImage { get; set; }
 
